@@ -1,0 +1,102 @@
+[
+    {
+        "in": "  Build   yours  ",
+        "max": 60,
+        "out": "Build yours"
+    },
+    {
+        "in": "Write to hello@irondeer.pt today",
+        "max": 60,
+        "out": "Write to {email} today"
+    },
+    {
+        "in": "user.name+tag@example.co.uk",
+        "max": 60,
+        "out": "{email}"
+    },
+    {
+        "in": "Call +351 912 345 678",
+        "max": 60,
+        "out": "Call {n}"
+    },
+    {
+        "in": "Order 12345",
+        "max": 60,
+        "out": "Order {n}"
+    },
+    {
+        "in": "Order 1234",
+        "max": 60,
+        "out": "Order 1234"
+    },
+    {
+        "in": "From €2,486",
+        "max": 60,
+        "out": "From €2,486"
+    },
+    {
+        "in": "4242 4242 4242 4242",
+        "max": 60,
+        "out": "{n}"
+    },
+    {
+        "in": "IBAN PT50 0002 0123 1234 5678 9015 4",
+        "max": 60,
+        "out": "IBAN PT{n}"
+    },
+    {
+        "in": "Size 52–56",
+        "max": 60,
+        "out": "Size 52–56"
+    },
+    {
+        "in": "Ships 07.10.2026",
+        "max": 60,
+        "out": "Ships {n}"
+    },
+    {
+        "in": "3 × 12",
+        "max": 60,
+        "out": "3 × 12"
+    },
+    {
+        "in": "+12",
+        "max": 60,
+        "out": "+12"
+    },
+    {
+        "in": "a b\tc\n d e﻿",
+        "max": 60,
+        "out": "a b c d e"
+    },
+    {
+        "in": "Ação rápida",
+        "max": 60,
+        "out": "Ação rápida"
+    },
+    {
+        "in": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "max": 60,
+        "out": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    },
+    {
+        "in": "🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲",
+        "max": 60,
+        "out": "🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲"
+    },
+    {
+        "in": "Section name that is long",
+        "max": 7,
+        "out": "Section"
+    },
+    {
+        "in": "",
+        "max": 60,
+        "out": null
+    },
+    {
+        "in": " \n\t ",
+        "max": 60,
+        "out": null
+    }
+]

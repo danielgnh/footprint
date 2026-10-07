@@ -1,0 +1,102 @@
+[
+    {
+        "in": "/",
+        "out": "/"
+    },
+    {
+        "in": "",
+        "out": "/"
+    },
+    {
+        "in": "bikes",
+        "out": "/bikes"
+    },
+    {
+        "in": "/bikes/gravel",
+        "out": "/bikes/gravel"
+    },
+    {
+        "in": "/bikes/gravel/",
+        "out": "/bikes/gravel"
+    },
+    {
+        "in": "//bikes//gravel",
+        "out": "/bikes/gravel"
+    },
+    {
+        "in": "/bikes/gravel?size=M&email=a@b.co#top",
+        "out": "/bikes/gravel"
+    },
+    {
+        "in": "/bikes/gravel#top",
+        "out": "/bikes/gravel"
+    },
+    {
+        "in": "/bikes/gravel/black-mamba",
+        "out": "/bikes/gravel/black-mamba"
+    },
+    {
+        "in": "/how-to-choose-a-gravel-bike",
+        "out": "/how-to-choose-a-gravel-bike"
+    },
+    {
+        "in": "/journal/best-gravel-bikes-2026",
+        "out": "/journal/best-gravel-bikes-2026"
+    },
+    {
+        "in": "/journal/2026",
+        "out": "/journal/2026"
+    },
+    {
+        "in": "/abcdefghijklmnopqrstuvwxyz",
+        "out": "/abcdefghijklmnopqrstuvwxyz"
+    },
+    {
+        "in": "/orders/Xk9fQ2LmP0aZ7bR4tY1uW8eV3sD6gH5jN2kL9mQ0",
+        "out": "/orders/{token}"
+    },
+    {
+        "in": "/pt/orders/Xk9fQ2LmP0aZ7bR4tY1uW8eV3sD6gH5jN2kL9mQ0",
+        "out": "/pt/orders/{token}"
+    },
+    {
+        "in": "/visits/123e4567-e89b-12d3-a456-426614174000",
+        "out": "/visits/{token}"
+    },
+    {
+        "in": "/users/jane@example.com/profile",
+        "out": "/users/{token}/profile"
+    },
+    {
+        "in": "/users/jane%40example.com",
+        "out": "/users/{token}"
+    },
+    {
+        "in": "/files/0123456789abcdef0123456789abcdef01234567",
+        "out": "/files/{token}"
+    },
+    {
+        "in": "/reset/eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgNryP4J3jVmNHl0w5N_XgL0n3I9PlFUP0THsR8U",
+        "out": "/reset/{token}"
+    },
+    {
+        "in": "/ABCDEFGHIJ1234567890",
+        "out": "/{token}"
+    },
+    {
+        "in": "/a1b2c3d4e5f6g7h",
+        "out": "/a1b2c3d4e5f6g7h"
+    },
+    {
+        "in": "/a1b2c3d4e5f6g7h8",
+        "out": "/{token}"
+    },
+    {
+        "in": "/de/r%C3%A4der",
+        "out": "/de/r%C3%A4der"
+    },
+    {
+        "in": "/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "out": "/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+]
