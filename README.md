@@ -166,6 +166,13 @@ $events = $visit->footprints()->timeline()->get();
 
 `dwell` and `scroll` rows are deltas and new maxima. Summing, averaging or counting them raw gives wrong numbers, so go through `dwellPerView()` and `deepestScroll()`.
 
+## AI agents (Laravel Boost)
+
+Footprint ships [Laravel Boost](https://github.com/laravel/boost) content in `resources/boost/`. Running `php artisan boost:install` in an app that requires the package picks it up:
+
+- **Guideline**, always loaded: how to mark up pages, what never to send, and how to read the tables correctly (dwell is a delta, positions belong to one device).
+- **`footprint-statamic-interactions`** skill: building an Interactions tab on Statamic 6 entries. It covers figures, a section funnel, a click and frustration map drawn over the live page in an iframe, form drop-off, and visit playback reconstructed from events. The tests run the skill's query class and overlay modules against recorded browser data, so the documented code keeps working.
+
 ## Development
 
 ```bash
