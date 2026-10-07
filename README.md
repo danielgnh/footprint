@@ -162,9 +162,10 @@ $events = $visit->footprints()->timeline()->get();
 | `dwellPerView()` | `Footprint` | One row per view and section with `ms`, the time it was on screen. A null section is time on the page. |
 | `deepestScroll()` | `Footprint` | One row per view with `depth`, the deepest scroll in percent. A view without a row never passed 10%. |
 | `reachedSections()` | `Footprint` | One row per view and section it reached, with `position` on the page. A section's reach is its row count divided by the page's views. |
+| `perView(...$columns)` | `Footprint` | One row per view and value of the columns, however many events the view had. Count the rows for the views that did something: a view with 300 rage clicks counts once. |
 | `timeline()` | `Footprint` | Events in the order they happened, without `dwell`. |
 
-`dwell` and `scroll` rows are deltas and new maxima. Summing, averaging or counting them raw gives wrong numbers, so go through `dwellPerView()` and `deepestScroll()`.
+`dwell` and `scroll` rows are deltas and new maxima. Summing, averaging or counting them raw gives wrong numbers, so go through `dwellPerView()` and `deepestScroll()`. Counting raw rows of any other type weighs a view by how many events it sent, so one bot can outweigh every visitor; count `perView()` rows instead.
 
 ## AI agents (Laravel Boost)
 

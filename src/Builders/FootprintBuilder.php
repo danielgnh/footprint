@@ -86,6 +86,18 @@ class FootprintBuilder extends Builder
     }
 
     /**
+     * One row per view and value of the given columns, however many events
+     * the view had. Count these rows to give every view one vote: a view with
+     * 300 rage clicks counts once.
+     */
+    public function perView(string ...$columns): static
+    {
+        $columns = $this->qualifyColumns(['visit_id', 'view', ...$columns]);
+
+        return $this->select($columns)->groupBy($columns);
+    }
+
+    /**
      * Events in the order they happened. Dwell is left out: its `t` is when a
      * flush sent it, not when the section was on screen.
      */

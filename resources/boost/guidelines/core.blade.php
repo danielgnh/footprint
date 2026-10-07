@@ -17,6 +17,7 @@ This app records anonymous UI interactions with `danielgnh/footprint`: page view
 - Query through the models' methods, which read the data the way it was written: `Footprint::onPage($url)->between($from, $to)->onDevice('mobile')->ofType('click')->inSection('hero')`, and `Visit::landedOn($url)`. `onPage()` takes a full URL or a path and normalises it as ingest did; never build the path by hand.
 - Never sum, average or count raw `dwell` or `scroll` rows: they are deltas and new maxima. `dwellPerView()` gives `ms` per view and section (a null `section` is time on the page); take medians of those. `deepestScroll()` gives `depth` per view.
 - Reach of a section is its `reachedSections()` rows divided by the page's `ofType('view')` count.
+- Give every view one vote: count `perView()` rows, not raw events. `Footprint::onPage($url)->ofType('rage')->perView('target')` is one row per view and element, so a view with 300 rage clicks counts once.
 - `$visit->footprints()->timeline()` gives a visit's events in order, without `dwell`.
 - `x` and `y` are 0–1 inside the clicked element's section, so they only make sense on the layout they came from: filter positional data by `footprint_visits.device` and draw it at that device's width.
 - Never join footprint data with anything that identifies a person: users, form submissions, orders, logs with IPs.

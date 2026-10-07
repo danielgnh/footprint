@@ -104,6 +104,27 @@ it('lists each section once per view that reached it', function () {
         ->and($reached->firstWhere('section', 'faq')->position)->toBe(3);
 });
 
+it('gives every view one row per value, however many events it had', function () {
+    ingest(batch([
+        footprint('view', ['from' => null]),
+        ...array_fill(0, 30, footprint('rage', ['target' => 'Pay', 'section' => 'checkout', 'x' => 0.5, 'y' => 0.5])),
+        footprint('rage', ['target' => 'Back', 'section' => 'checkout', 'x' => 0.1, 'y' => 0.1]),
+        footprint('view', ['view' => 2, 'path' => '/bikes', 'from' => '/bikes/gravel']),
+        footprint('rage', ['view' => 2, 'path' => '/bikes', 'target' => 'Pay', 'section' => 'checkout', 'x' => 0.5, 'y' => 0.5]),
+    ]))->assertNoContent();
+
+    ingest(batch([
+        footprint('view', ['from' => null]),
+        footprint('rage', ['target' => 'Pay', 'section' => 'checkout', 'x' => 0.5, 'y' => 0.5]),
+    ], ['id' => OTHER_VISIT]))->assertNoContent();
+
+    $rows = Footprint::onPage('/bikes/gravel')->ofType('rage')->perView('target')->get();
+
+    expect($rows)->toHaveCount(3)
+        ->and($rows->countBy('target')->all())->toEqual(['Pay' => 2, 'Back' => 1])
+        ->and(Footprint::ofType('rage')->perView()->get())->toHaveCount(3);
+});
+
 it('replays a visit in the order it happened, without dwell', function () {
     ingest(batch([
         footprint('view', ['from' => null, 't' => 0]),
