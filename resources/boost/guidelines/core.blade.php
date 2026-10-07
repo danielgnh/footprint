@@ -6,8 +6,13 @@ This app records anonymous UI interactions with `danielgnh/footprint`: page view
 ### Instrumenting pages
 
 - `@footprint` goes in the `<head>` of the front-end layout. Render it for guests only and never in a CMS preview, so editors and preview frames do not record themselves: `@guest @footprint @endguest`. Templates that are not Blade print `app(\Danielgnh\Footprint\Script::class)->tag()`.
+- Pop-ups and banners that open by themselves should not open when `window.self !== window.top`, so they cover neither CMS Live Preview nor a control-panel frame of the page.
 - Give every top-level section of a page a stable, unique `data-footprint-section` name: the block or component handle in kebab case (`hero`, `bike-showcase`, `faq`), never translated copy or a position. Reports compare sections across releases and languages by this name. Repeat a handle on one page as `faq-2`.
-- Put `data-footprint="Name"` on a control whose visible text is translated, dynamic or missing (icon buttons), so it reads the same in every language.
+- Name the site header, the footer and every dialog with `data-footprint-section` too. A dialog otherwise takes its `aria-label`, which is translated.
+- A name is history: renaming a section or a `data-footprint` splits its data into two rows. Pick names once.
+- A fixed or sticky section (sticky header, reveal footer, fixed bar) records clicks but no reach or time unless it is a dialog; do not read reach for it.
+- Put `data-footprint="Name"` on any control whose visible text is translated, has several parts, changes or is missing: tabs, cards, list items, anything showing a date, price or count, icon buttons. Without it the name is the text on screen, which differs by language and by day.
+- Give every field a `name`. Without one it is named after its label, required mark included (`Email address*`); client-rendered Inertia, React and Vue forms often leave it out. Give every form a `data-footprint`, or it falls back to `aria-label`, `name`, `id`, then its action path, or no name at all.
 - Put `data-footprint-ignore` on anything that can show personal data: account menus, order details, chat widgets. Nothing inside it is recorded.
 - Domain milestones go through `window.footprint.track('configurator_option', { part: 'wheels', handle: 'g50' })`. Names are 1–60 characters of `A-Za-z0-9_.:-`; props are flat, at most ten. Never put anything a visitor typed, an email, a name or an id from the database in a prop.
 
