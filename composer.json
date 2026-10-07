@@ -1,0 +1,75 @@
+{
+    "name": "danielgnh/footprint",
+    "description": "Anonymous UI interaction analytics for Laravel: the sections people read, what they click, where they get stuck, with nothing tied to a person.",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "analytics",
+        "heatmap",
+        "ux",
+        "privacy"
+    ],
+    "authors": [
+        {
+            "name": "Daniel Goncharov"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/contracts": "^12.0 || ^13.0",
+        "illuminate/database": "^12.0 || ^13.0",
+        "illuminate/http": "^12.0 || ^13.0",
+        "illuminate/routing": "^12.0 || ^13.0",
+        "illuminate/support": "^12.0 || ^13.0",
+        "illuminate/view": "^12.0 || ^13.0"
+    },
+    "require-dev": {
+        "driftingly/rector-laravel": "^2.5",
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.13",
+        "orchestra/testbench": "^10.0 || ^11.0",
+        "pestphp/pest": "^4.0",
+        "phpstan/phpstan": "^2.0",
+        "rector/rector": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Danielgnh\\Footprint\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Danielgnh\\Footprint\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "format": "pint",
+        "lint": "pint --test",
+        "refactor": "rector",
+        "test:refactor": "rector --dry-run",
+        "test:lint": "pint --test",
+        "test:types": "phpstan analyse",
+        "test:unit": "pest",
+        "test": [
+            "@test:refactor",
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Danielgnh\\Footprint\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
