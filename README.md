@@ -173,7 +173,7 @@ Footprint ships [Laravel Boost](https://github.com/laravel/boost) content in `re
 
 - **Guideline**, always loaded: how to mark up pages, what never to send, and how to read the tables correctly (dwell is a delta, positions belong to one device).
 - **`footprint-statamic-interactions`** skill: building an Interactions tab on Statamic 6 entries. It covers figures, a section funnel, a click and frustration map drawn over the live page in an iframe, form drop-off, and visit playback reconstructed from events. The tests run the skill's query class and overlay modules against recorded browser data, so the documented code keeps working.
-- **`footprint-statamic-mcp`** skill: four read-only tools and a prompt for the site's [Statamic MCP](https://github.com/danielgnh/statamic-mcp) server, so an agent can find the pages that underperform, see why from how visitors use them, change them through the entries tools and measure the change. Each section is tied to the page builder set it renders from, and visits reach the agent with no id and no time of day.
+- **`footprint-statamic-mcp`** skill: four read-only tools and a prompt for the site's [Statamic MCP](https://github.com/danielgnh/statamic-mcp) server, so an agent can find the pages that underperform, see why from how visitors use them, change them through the entries tools and measure the change. Each section is tied to the page builder set it renders from. The agent only gets aggregates: shares of views over a minimum sample, one vote per view, and only the names the live page contains, so nothing a browser posts reaches it unchecked.
 
 ## Development
 
