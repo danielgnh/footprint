@@ -13,7 +13,8 @@ it('renders the guideline without running the directives it describes', function
         ->toContain('@footprint')
         ->toContain('@guest')
         ->not->toContain('<script')
-        ->toContain('footprint-statamic-interactions');
+        ->toContain('footprint-statamic-interactions')
+        ->toContain('footprint-statamic-mcp');
 });
 
 it('gives every skill the frontmatter Boost requires', function (string $directory) {
