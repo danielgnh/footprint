@@ -84,6 +84,35 @@ it('follows views in and out of a page', function () {
         ->and(collect($flows['next'])->pluck('path'))->toContain('/spa');
 });
 
+it('gives every view one vote in shares and per-view columns', function () {
+    $clicks = interactions('/clicks');
+    $forms = interactions('/forms');
+    $quote = $forms->forms()->firstWhere('form', 'quote');
+
+    expect($clicks->share('rage'))->toBeGreaterThan(0)->toBeLessThanOrEqual(1)
+        ->and($clicks->share('dead'))->toBeGreaterThan(0)->toBeLessThanOrEqual(1)
+        ->and($clicks->share('click', 'The bike'))->toBeGreaterThan(0)->toBeLessThanOrEqual($clicks->share('click'))
+        ->and($clicks->share('rage', 'Nothing called this'))->toBe(0.0)
+        ->and($forms->share('submit', 'Newsletter'))->toBeGreaterThan(0)
+        ->and($forms->share('abandon'))->toBeGreaterThan(0)
+        ->and($clicks->clicks()->every(fn (array $click) => $click['views'] >= $click['visits'] && $click['views'] <= $click['clicks']))->toBeTrue()
+        ->and($clicks->frustration()->every(fn (array $row) => $row['views'] >= 1 && $row['views'] <= $row['count']))->toBeTrue()
+        ->and(collect($quote['fields'])->every(fn (array $field) => $field['views'] >= 1 && $field['views'] <= $field['focused']))->toBeTrue()
+        ->and($forms->forms()->firstWhere('form', 'Newsletter')['submitted_views'])->toBeGreaterThan(0);
+});
+
+it('counts a view that hammers a button once', function () {
+    $pay = fn () => interactions('/clicks')->frustration()->first(fn (array $row) => $row['type'] === 'rage' && $row['target'] === 'Hammered');
+
+    ingest(batch([
+        footprint('view', ['path' => '/clicks', 'from' => null]),
+        ...array_fill(0, 100, footprint('rage', ['path' => '/clicks', 'target' => 'Hammered', 'section' => 'checkout', 'x' => 0.5, 'y' => 0.5])),
+    ]))->assertNoContent();
+
+    expect($pay()['count'])->toBe(100)
+        ->and($pay()['views'])->toBe(1);
+});
+
 it('lists recent visits and replays one without dwell rows', function () {
     $visits = interactions('/long')->visits();
     $visit = PageInteractions::visit($visits->first()->id);

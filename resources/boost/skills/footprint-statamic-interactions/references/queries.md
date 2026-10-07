@@ -48,6 +48,27 @@ final class PageInteractions
     }
 
     /**
+     * Share of views with at least one event of the type, 0 to 1. The name
+     * narrows to one form for submit and one target for any other type, so
+     * share('submit', 'quote') is the share of views that sent the quote form.
+     */
+    public function share(string $type, ?string $name = null): float
+    {
+        $views = $this->query()
+            ->fromSub(
+                $this->events()
+                    ->ofType($type)
+                    ->when($name !== null, fn (FootprintBuilder $events) => $events->where($type === 'submit' ? 'form' : 'target', $name))
+                    ->perView()
+                    ->toBase(),
+                'per_view',
+            )
+            ->count();
+
+        return round(min(1, $views / max(1, $this->views())), 3);
+    }
+
+    /**
      * Sections in page order: the share of views that reached each one and
      * the median time it stayed on screen in the views that reached it.
      */
@@ -91,6 +112,7 @@ final class PageInteractions
     public function clicks(int $limit = 30): Collection
     {
         $visits = max(1, $this->visitCount());
+        $views = $this->viewsBy(['click'], ['target', 'section', 'href']);
 
         return $this->events()
             ->ofType('click')
@@ -101,11 +123,17 @@ final class PageInteractions
             ->limit($limit)
             ->toBase()
             ->get()
-            ->map(fn (object $row): array => [...(array) $row, 'share' => round($row->visits / $visits, 3)]);
+            ->map(fn (object $row): array => [
+                ...(array) $row,
+                'views' => (int) data_get($views->get(self::key($row, ['target', 'section', 'href'])), 'views', 0),
+                'share' => round($row->visits / $visits, 3),
+            ]);
     }
 
     public function frustration(int $limit = 30): Collection
     {
+        $views = $this->viewsBy(['rage', 'dead'], ['type', 'target', 'section']);
+
         return $this->events()
             ->ofType('rage', 'dead')
             ->select('type', 'target', 'section')
@@ -114,7 +142,11 @@ final class PageInteractions
             ->orderByDesc('count')
             ->limit($limit)
             ->toBase()
-            ->get();
+            ->get()
+            ->map(fn (object $row): array => [
+                ...(array) $row,
+                'views' => (int) data_get($views->get(self::key($row, ['type', 'target', 'section'])), 'views', 0),
+            ]);
     }
 
     /**
@@ -142,16 +174,20 @@ final class PageInteractions
     {
         $abandons = $this->countBy('abandon', ['form', 'target']);
         $submits = $this->countBy('submit', ['form'])->pluck('count', 'form');
+        $submitViews = $this->viewsBy(['submit'], ['form'])->pluck('views', 'form');
+        $focusViews = $this->viewsBy(['field'], ['form', 'target']);
 
         return $this->countBy('field', ['form', 'target'])
             ->groupBy(fn (object $row) => $row->form ?? '')
             ->map(fn (Collection $fields, string $form): array => [
                 'form' => $form === '' ? null : $form,
                 'submitted' => (int) ($submits[$form] ?? 0),
+                'submitted_views' => (int) ($submitViews[$form] ?? 0),
                 'fields' => $fields
                     ->map(fn (object $field): array => [
                         'field' => $field->target,
                         'focused' => (int) $field->count,
+                        'views' => (int) data_get($focusViews->get(self::key($field, ['form', 'target'])), 'views', 0),
                         'abandoned' => (int) data_get(
                             $abandons->first(fn (object $abandon) => $abandon->form === $field->form && $abandon->target === $field->target),
                             'count',
@@ -213,6 +249,8 @@ final class PageInteractions
      */
     public function custom(int $limit = 20): Collection
     {
+        $views = $this->viewsBy(['custom'], ['target'])->pluck('views', 'target');
+
         return $this->events()
             ->ofType('custom')
             ->select('target as name')
@@ -221,7 +259,8 @@ final class PageInteractions
             ->orderByDesc('count')
             ->limit($limit)
             ->toBase()
-            ->get();
+            ->get()
+            ->map(fn (object $row): array => [...(array) $row, 'views' => (int) ($views[$row->name] ?? 0)]);
     }
 
     public function visits(int $limit = 50): Collection
@@ -245,7 +284,10 @@ final class PageInteractions
         ];
     }
 
-    private function events(): FootprintBuilder
+    /**
+     * A fresh query for the page's events in the range and device.
+     */
+    public function events(): FootprintBuilder
     {
         return Footprint::onPage($this->url)
             ->between($this->from, $this->to)
@@ -285,6 +327,32 @@ final class PageInteractions
             ->get();
     }
 
+    /**
+     * Views per value of the columns, keyed like key(): a view counts once
+     * however many of these events it sent.
+     *
+     * @param  list<string>  $types
+     * @param  list<string>  $columns
+     */
+    private function viewsBy(array $types, array $columns): Collection
+    {
+        return $this->query()
+            ->fromSub($this->events()->ofType(...$types)->perView(...$columns)->toBase(), 'per_view')
+            ->select($columns)
+            ->selectRaw('count(*) as views')
+            ->groupBy($columns)
+            ->get()
+            ->keyBy(fn (object $row): string => self::key($row, $columns));
+    }
+
+    /**
+     * @param  list<string>  $columns
+     */
+    private static function key(object $row, array $columns): string
+    {
+        return implode("\0", array_map(fn (string $column): string => (string) data_get($row, $column), $columns));
+    }
+
     private function query(): Query
     {
         return (new Footprint)->getConnection()->query();
@@ -299,6 +367,7 @@ Notes:
 - The `(path, type, created_at)` index carries every per-page query. `visits()`, `visit()` and the device filter go through `visit_id`, which is indexed with `view`.
 - `section_index` is a section's position among the tracked sections when it was reached, so `avg(position)` orders sections the way the page lays them out even when content loads late.
 - `points()` returns the newest points first and stops at `POINTS`. The map needs the shape, not every click.
+- Counts (`clicks`, `count`, `focused`, `submitted`) weigh a view by how many events it sent. `views` and `share()` give every view one vote through the package's `perView()`, so one visitor hammering a button cannot outweigh the rest. The MCP skill reads only those.
 
 ## The controller
 

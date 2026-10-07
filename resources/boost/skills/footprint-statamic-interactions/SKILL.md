@@ -226,6 +226,7 @@ Compose the tab from `@statamic/cms/ui`: `Panel` and `Card` for the blocks, `Hea
 - Sections are matched to the live page by name. A name in the data with no element on the page is a section that was renamed or removed: list it as no longer on the page and leave it off the map.
 - The page in the iframe is today's page; the data may be older. Show when the entry was last edited, and offer to start the range there when it falls inside it.
 - Below roughly 30 views, show counts rather than percentages and say the sample is small. Never present a pattern from a handful of visits as a finding.
+- Counts weigh a view by how many events it sent, so one visitor hammering a button can top the frustration list. `PageInteractions` also gives every view one vote: `share()` and the `views` column on clicks, frustration, form fields and custom events. Prefer them wherever the tab ranks or compares.
 
 ## Rules
 
