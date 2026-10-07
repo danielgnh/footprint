@@ -44,6 +44,16 @@ describe('clicks', () => {
         ]);
     });
 
+    it('places a click inside a fixed section, though its reach and dwell are not counted', () => {
+        html(`<header id="top" style="position: fixed"><button id="menu">Menu</button></header>`);
+        rect($('#top'), { left: 0, top: 0, width: 400, height: 50 });
+        const run = boot();
+
+        click($('#menu'), 100, 25);
+
+        expect(run.of('click')).toEqual([expect.objectContaining({ target: 'Menu', section: 'top', x: 0.25, y: 0.5 })]);
+    });
+
     it('records no position for keyboard activation', () => {
         html(`<button id="b">Send</button>`);
         const run = boot();

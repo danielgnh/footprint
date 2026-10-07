@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Layout</title>
+    <style>
+        body { margin: 0; font: 16px/1.4 system-ui, sans-serif; }
+        body > header { position: fixed; top: 0; left: 0; right: 0; height: 50px; background: #eee; }
+        main { padding-top: 60px; }
+        .card { display: flex; flex-direction: column; align-items: flex-start; }
+        article { margin: 10px 0; }
+        #rest { height: 1500px; }
+        body > footer { position: sticky; bottom: 0; height: 60px; background: #eee; }
+    </style>
+    {{tracker}}
+</head>
+<body>
+    <header><button id="menu">Menu</button></header>
+    <main>
+        <section id="models">
+            <button id="card" class="card"><span>01</span><span>Black Mamba</span><span>Gloss black</span></button>
+            <button id="loud" style="text-transform: uppercase">Build yours</button>
+            <article>
+                <header><button id="share">Share</button></header>
+                <footer><button id="reviews">More reviews</button></footer>
+            </article>
+        </section>
+    </main>
+    <article>
+        <header><button id="save">Save</button></header>
+    </article>
+    <div id="rest"></div>
+    <footer><button id="up">Back to top</button></footer>
+</body>
+</html>

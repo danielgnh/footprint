@@ -124,6 +124,17 @@ describe('origin', function () {
         ingest(batch(), ['HTTP_ORIGIN' => 'https://www.irondeer.pt'])->assertNoContent();
         ingest(batch(), ['HTTP_ORIGIN' => 'https://shop.irondeer.pt'])->assertStatus(403);
     });
+
+    it('records the host of the page, not of the endpoint', function () {
+        config(['footprint.allowed_hosts' => ['shop.irondeer.pt']]);
+
+        ingest(batch(), ['HTTP_ORIGIN' => 'https://Shop.irondeer.pt'])->assertNoContent();
+        ingest(batch(visit: ['id' => OTHER_VISIT]), ['HTTP_ORIGIN' => '', 'HTTP_REFERER' => 'https://shop.irondeer.pt/bikes'])->assertNoContent();
+        ingest(batch(visit: ['id' => THIRD_VISIT]), ['HTTP_ORIGIN' => '', 'HTTP_SEC_FETCH_SITE' => 'same-origin'])->assertNoContent();
+
+        expect(Visit::pluck('host', 'id')->all())->toEqual([VISIT_ID => 'shop.irondeer.pt', OTHER_VISIT => 'shop.irondeer.pt', THIRD_VISIT => 'localhost'])
+            ->and(Footprint::onPage('https://shop.irondeer.pt/bikes/gravel')->count())->toBe(2);
+    });
 });
 
 describe('bots', function () {

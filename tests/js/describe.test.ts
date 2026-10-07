@@ -26,6 +26,20 @@ describe('nameOf', () => {
         expect(nameOf($('#h'))).toBe('button');
     });
 
+    it('keeps parts laid out on their own apart and inline parts joined, whatever CSS hides or transforms', () => {
+        html(`
+            <button id="a"><span style="display: block">01</span><span style="display: block">Black Mamba</span><span style="display: block">Gloss black</span></button>
+            <button id="b"><b>Bu</b>y<br>now</button>
+            <button id="c" style="text-transform: uppercase">Build<span style="display: none"> yours</span></button>
+            <div id="size"><span style="display: block">Size</span><span style="display: block">M</span></div><button id="d" aria-labelledby="size"></button>
+        `);
+
+        expect(nameOf($('#a'))).toBe('01 Black Mamba Gloss black');
+        expect(nameOf($('#b'))).toBe('Buy now');
+        expect(nameOf($('#c'))).toBe('Build yours');
+        expect(nameOf($('#d'))).toBe('Size M');
+    });
+
     it('scrubs and truncates visible text', () => {
         html(`
             <button id="a">Email jane@example.com or call +351 912 345 678</button>

@@ -53,7 +53,7 @@ return new class extends Migration
             $table->json('data')->nullable();
             $table->timestamp('created_at');
 
-            $table->index(['host', 'path', 'type', 'created_at']);
+            $table->index(['path', 'type', 'created_at']);
             $table->index(['visit_id', 'view']);
         });
     }

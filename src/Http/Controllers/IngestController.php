@@ -21,7 +21,9 @@ final class IngestController
             return response()->noContent(413);
         }
 
-        if (! $this->sameSite($request)) {
+        $host = $this->pageHost($request);
+
+        if ($host === null) {
             return response()->noContent(403);
         }
 
@@ -35,31 +37,34 @@ final class IngestController
             return response()->noContent(422);
         }
 
-        $recorder->record($payload, strtolower($request->getHost()));
+        $recorder->record($payload, $host);
 
         return response()->noContent();
     }
 
-    private function sameSite(Request $request): bool
+    /**
+     * The host of the page that sent the batch, which is not the endpoint's
+     * when a site posts here through allowed_hosts. Null when it is not a
+     * host this app records.
+     */
+    private function pageHost(Request $request): ?string
     {
+        $origin = $request->header('Origin');
+        $referer = $request->header('Referer');
+
+        $host = match (true) {
+            filled($origin) && $origin !== 'null' => parse_url((string) $origin, PHP_URL_HOST),
+            filled($referer) => parse_url((string) $referer, PHP_URL_HOST),
+            $request->header('Sec-Fetch-Site') === 'same-origin' => $request->getHost(),
+            default => null,
+        };
+
         $allowed = array_map(strtolower(...), array_filter([
             $request->getHost(),
             parse_url((string) config('app.url'), PHP_URL_HOST),
             ...(array) config('footprint.allowed_hosts', []),
         ]));
 
-        $origin = $request->header('Origin');
-
-        if (filled($origin) && $origin !== 'null') {
-            return in_array(strtolower((string) parse_url($origin, PHP_URL_HOST)), $allowed, true);
-        }
-
-        $referer = $request->header('Referer');
-
-        if (filled($referer)) {
-            return in_array(strtolower((string) parse_url($referer, PHP_URL_HOST)), $allowed, true);
-        }
-
-        return $request->header('Sec-Fetch-Site') === 'same-origin';
+        return is_string($host) && in_array(strtolower($host), $allowed, true) ? strtolower($host) : null;
     }
 }

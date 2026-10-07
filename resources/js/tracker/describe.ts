@@ -28,12 +28,28 @@ export const INTERACTIVE = [
 ].join(',');
 
 export const SECTION = '[data-footprint-section]';
-export const LANDMARK = 'header, footer, section[id], dialog';
+export const LANDMARK = 'header:not(:is(article, aside, main, nav, section) header), footer:not(:is(article, aside, main, nav, section) footer), section[id], dialog';
 
 const NAME = 60;
 
+function laidOut(node: Node | null): string {
+    let text = '';
+
+    for (const child of node?.childNodes ?? []) {
+        if (child instanceof Element) {
+            // A detached element has no computed display (''), so it reads like textContent.
+            const inline = child.tagName !== 'BR' && ['inline', 'contents', ''].includes(getComputedStyle(child).display);
+            text += inline ? laidOut(child) : ` ${laidOut(child)} `;
+        } else if (child instanceof Text) {
+            text += child.data;
+        }
+    }
+
+    return text;
+}
+
 function text(element: Element | null): string | null {
-    return element === null ? null : scrub(element.textContent, NAME);
+    return scrub(laidOut(element), NAME);
 }
 
 function attribute(element: Element, name: string, max = NAME): string | null {
@@ -57,7 +73,7 @@ function labelledBy(element: Element): string | null {
 
     const label = ids
         .split(/\s+/)
-        .map((id) => element.ownerDocument.getElementById(id)?.textContent ?? '')
+        .map((id) => laidOut(element.ownerDocument.getElementById(id)))
         .join(' ');
 
     return scrub(label, NAME);

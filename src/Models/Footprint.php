@@ -2,8 +2,10 @@
 
 namespace Danielgnh\Footprint\Models;
 
+use Danielgnh\Footprint\Builders\FootprintBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
 
 /**
@@ -49,6 +51,15 @@ class Footprint extends Model
     public function visit(): BelongsTo
     {
         return $this->belongsTo(Visit::class);
+    }
+
+    /**
+     * @param  Builder  $query
+     */
+    #[\Override]
+    public function newEloquentBuilder($query): FootprintBuilder
+    {
+        return new FootprintBuilder($query);
     }
 
     #[\Override]

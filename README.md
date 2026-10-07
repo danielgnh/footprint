@@ -19,19 +19,25 @@ Put the tag in the `<head>` of your layout, before your own scripts:
 @footprint
 ```
 
-It renders a one-line stub, so `window.footprint.track()` works before the tracker has loaded, and the deferred tracker itself (about 5.7 kB gzipped).
+It renders a one-line stub, so `window.footprint.track()` works before the tracker has loaded, and the deferred tracker itself (about 5.9 kB gzipped).
 
 Templates that are not Blade print the same markup from PHP: `app(\Danielgnh\Footprint\Script::class)->tag()`. Statamic's Antlers, for example, can call it from a small tag or a view composer.
 
 ## Marking up a page
 
-The tracker works without any markup: it treats `header`, `footer`, `section[id]` and `dialog` as sections and names clicks from their accessible names. Three attributes make the data sharper:
+The tracker works without any markup: it treats the page's `header` and `footer`, `section[id]` and `dialog` as sections and names clicks from their accessible names. Three attributes make the data sharper:
 
 | Attribute | Effect |
 |---|---|
 | `data-footprint-section="hero"` | Marks a section and names it. Reach and dwell are counted per section; clicks are placed inside it. |
 | `data-footprint="Hero CTA"` | Names an element for clicks, fields or forms, ahead of anything it would read off the element. |
 | `data-footprint-ignore` | Nothing inside this element is recorded: no clicks, fields, sections or rage clicks. Put it on anything that can show personal data, such as an account menu. |
+
+How it reads the page:
+
+- A name is the text as written, with a space around every part not laid out inline (a block, flex or grid item, a `<br>`): a card stacking `01`, `Black Mamba` and `Gloss black` is `01 Black Mamba Gloss black`.
+- A `header` or `footer` inside `article`, `aside`, `main`, `nav` or `section` is not a section. Its clicks belong to the section around it, or to none.
+- A section that is `position: fixed` or `sticky` when the tracker finds it (a sticky header, a reveal footer, a fixed bar) records clicks and their position, but no `section` or `dwell` rows, so it never shows reach or time, unless it is a dialog: `dialog`, `[role="dialog"]`, `[role="alertdialog"]` or `[aria-modal="true"]`.
 
 Custom milestones go through `track`:
 
@@ -80,7 +86,7 @@ Mention the collection in your privacy policy. Whether it needs consent where yo
 | Column | Meaning |
 |---|---|
 | `id` | Random UUID from the browser's memory. |
-| `host` | The site's host. |
+| `host` | Host of the page, from the batch's `Origin` or `Referer`. A site posting through `allowed_hosts` keeps its own host. |
 | `entry_path` | Normalised path of the first view. |
 | `referrer_host` | Host of an external referrer, or null. |
 | `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` | Campaign tags from the landing URL, scrubbed. |
@@ -113,8 +119,8 @@ Mention the collection in your privacy policy. Whether it needs consent where yo
 | Type | Sent when | Columns used |
 |---|---|---|
 | `view` | A page loads, a path changes through `pushState`/`replaceState`/`popstate`, or a page returns from the back-forward cache. A query-only change is not a view. | `previous` |
-| `section` | A section is first seen in a view: half of it is visible, or it fills half the viewport. | `section`, `section_index` |
-| `dwell` | On every flush, the milliseconds a section was seen since the last one, while the tab was visible and the visitor active in the last 30 s. `section` null is time on the page. Sum them per view. | `section`, `value` |
+| `section` | A section is first seen in a view: half of it is visible, or it fills half the viewport. Never for a fixed or sticky section unless it is a dialog. | `section`, `section_index` |
+| `dwell` | On every flush, the milliseconds a section was seen since the last one, while the tab was visible and the visitor active in the last 30 s. `section` null is time on the page. None for a fixed or sticky section unless it is a dialog. Sum them per view. | `section`, `value` |
 | `scroll` | The deepest point reached passes another 10%. A page shorter than the viewport reports 100. | `value` |
 | `click` | An interactive element is clicked: a link, button, form control, label, summary, ARIA widget, `[tabindex="0"]`, `[onclick]` or `[data-footprint]`. A label's click on its own control is counted once. | `target`, `href`, `section`, `x`, `y` |
 | `rage` | A third press within 700 ms and 24 px of the first, disabled buttons included. Not when it selected text. | `target`, `section`, `x`, `y` |
@@ -129,6 +135,71 @@ Mention the collection in your privacy policy. Whether it needs consent where yo
 Events wait in memory and go out as one `text/plain` JSON batch through `navigator.sendBeacon`, falling back to a `keepalive` fetch without credentials. A batch is sent when the tab is hidden or the page unloads, every 15 seconds, and once 50 events have built up. A refused send keeps the events for the next trigger; nothing retries in a loop, and the buffer holds at most 1,000 events. Because dwell is sent as deltas, a tab that is killed outright loses at most 15 seconds of it.
 
 The wire format is `contract/batch.schema.json`. The server rejects a malformed envelope with 422 and drops a single event it cannot read, so a newer tracker never loses the rest of its batch.
+
+## Querying
+
+Both models have query methods that read the data the way it was written, so the rest is plain Eloquent:
+
+```php
+use Danielgnh\Footprint\Models\Footprint;
+use Danielgnh\Footprint\Models\Visit;
+
+$page = Footprint::onPage('https://example.com/pricing')
+    ->between(now()->subDays(30), now())
+    ->onDevice('mobile');
+
+$views = $page->clone()->ofType('view')->count();
+$medianTime = $page->clone()->dwellPerView()->get()->whereNull('section')->median('ms');
+$readToTheEnd = $page->clone()->deepestScroll()->get()->where('depth', 100)->count() / max(1, $views);
+$deadClicks = $page->clone()->ofType('dead')->inSection('hero')->selectRaw('target, count(*) as clicks')->groupBy('target')->get();
+
+$gaveUp = Visit::whereHas('footprints', fn ($footprints) => $footprints->onPage('/quote')->ofType('abandon')->where('target', 'email'));
+$events = $visit->footprints()->timeline()->get();
+```
+
+| Method | On | What it does |
+|---|---|---|
+| `onPage($url)` | `Footprint` | Rows of a page. Takes a full URL or a path and normalises it the way ingest stored it; a URL with a host also matches the host. |
+| `landedOn($url)` | `Visit` | Visits that started on a page, matched the same way. |
+| `onHost($host)` | both | Rows of one host. |
+| `between($from, $to)` | both | Rows that arrived (`Footprint`) or visits that started (`Visit`) from `$from` up to, not including, `$to`. |
+| `onDevice($device)` | both | `mobile`, `tablet` or `desktop`. |
+| `ofType(...$types)`, `inSection($section)` | `Footprint` | Event types and the section they happened in. |
+| `dwellPerView()` | `Footprint` | One row per view and section with `ms`, the time it was on screen. A null section is time on the page. |
+| `deepestScroll()` | `Footprint` | One row per view with `depth`, the deepest scroll in percent. A view without a row never passed 10%. |
+| `reachedSections()` | `Footprint` | One row per view and section it reached, with `position` on the page. A section's reach is its row count divided by the page's views. |
+| `perView(...$columns)` | `Footprint` | One row per view and value of the columns, however many events the view had. Count the rows for the views that did something: a view with 300 rage clicks counts once. |
+| `timeline()` | `Footprint` | Events in the order they happened, without `dwell`. |
+
+`dwell` and `scroll` rows are deltas and new maxima. Summing, averaging or counting them raw gives wrong numbers, so go through `dwellPerView()` and `deepestScroll()`. Counting raw rows of any other type weighs a view by how many events it sent, so one bot can outweigh every visitor; count `perView()` rows instead.
+
+## Statamic
+
+[`danielgnh/footprint-statamic`](https://github.com/danielgnh/footprint-statamic) adds an Interactions tab to Statamic 6 entries: figures, a section funnel, a click and frustration map drawn over the live page, forms, flows and visit playback reconstructed from events. It is a separate package so this one stays free of Statamic code.
+
+## AI agents (Laravel Boost)
+
+Footprint ships [Laravel Boost](https://github.com/laravel/boost) content in `resources/boost/`. Running `php artisan boost:install` in an app that requires the package picks it up:
+
+- **Guideline**, always loaded: how to mark up pages, what never to send, and how to read the tables correctly (dwell is a delta, positions belong to one device).
+
+The Statamic skills ship with [`danielgnh/footprint-statamic`](#statamic): `footprint-statamic-interactions` for setting up and adapting the Interactions tab, and `footprint-statamic-mcp` for giving the data to agents through the site's [Statamic MCP](https://github.com/danielgnh/statamic-mcp) server, as aggregates of names the live page contains.
+
+Boost writes Claude Code's guidelines to `AGENTS.md` (config `boost.agents.claude_code.guidelines_path`). Claude Code only reads them when `CLAUDE.md` contains the line `@AGENTS.md`.
+
+A non-interactive `php artisan boost:install` takes its choices from `boost.json`:
+
+```json
+{
+    "agents": ["claude_code"],
+    "guidelines": true,
+    "packages": ["danielgnh/footprint", "danielgnh/footprint-statamic"],
+    "skills": ["footprint-statamic-interactions", "footprint-statamic-mcp"],
+    "cloud": false
+}
+```
+
+Skills are installed only when `skills` lists them (or with `--skills`). Without `"cloud": false`, Cloud defaults on and Boost adds a Laravel Cloud skill whenever it installs skills.
 
 ## Development
 
