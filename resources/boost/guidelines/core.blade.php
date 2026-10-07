@@ -31,6 +31,6 @@ This app records anonymous UI interactions with `danielgnh/footprint`: page view
 
 - The ingest route sits outside the `web` middleware group on purpose. Do not add session, cookie or CSRF middleware to it.
 - Do not change what the tracker sends from the app; the wire format is the package's `contract/batch.schema.json`.
-- Building a Statamic control panel view of this data (an Interactions tab on entries, a click map over the live page, visit playback): use the `footprint-statamic-interactions` skill.
-- Giving AI agents this data through the site's Statamic MCP server (`danielgnh/statamic-mcp`), so they can find pages that underperform, see why and measure a change: use the `footprint-statamic-mcp` skill.
+- A Statamic control panel view of this data (an Interactions tab on entries, a click map over the live page, visit playback) comes from `danielgnh/footprint-statamic`; never rebuild it in the app. Its `footprint-statamic-interactions` skill covers setting it up and adapting it.
+- Giving AI agents this data through the site's Statamic MCP server (`danielgnh/statamic-mcp`), so they can find pages that underperform, see why and measure a change: use the `footprint-statamic-mcp` skill, which also ships with `danielgnh/footprint-statamic`.
 @endverbatim

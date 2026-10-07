@@ -173,13 +173,33 @@ $events = $visit->footprints()->timeline()->get();
 
 `dwell` and `scroll` rows are deltas and new maxima. Summing, averaging or counting them raw gives wrong numbers, so go through `dwellPerView()` and `deepestScroll()`. Counting raw rows of any other type weighs a view by how many events it sent, so one bot can outweigh every visitor; count `perView()` rows instead.
 
+## Statamic
+
+[`danielgnh/footprint-statamic`](https://github.com/danielgnh/footprint-statamic) adds an Interactions tab to Statamic 6 entries: figures, a section funnel, a click and frustration map drawn over the live page, forms, flows and visit playback reconstructed from events. It is a separate package so this one stays free of Statamic code.
+
 ## AI agents (Laravel Boost)
 
 Footprint ships [Laravel Boost](https://github.com/laravel/boost) content in `resources/boost/`. Running `php artisan boost:install` in an app that requires the package picks it up:
 
 - **Guideline**, always loaded: how to mark up pages, what never to send, and how to read the tables correctly (dwell is a delta, positions belong to one device).
-- **`footprint-statamic-interactions`** skill: building an Interactions tab on Statamic 6 entries. It covers figures, a section funnel, a click and frustration map drawn over the live page in an iframe, form drop-off, and visit playback reconstructed from events. The tests run the skill's query class and overlay modules against recorded browser data, so the documented code keeps working.
-- **`footprint-statamic-mcp`** skill: four read-only tools and a prompt for the site's [Statamic MCP](https://github.com/danielgnh/statamic-mcp) server, so an agent can find the pages that underperform, see why from how visitors use them, change them through the entries tools and measure the change. Each section is tied to the page builder set it renders from. The agent only gets aggregates: shares of views over a minimum sample, one vote per view, and only the names the live page contains, so nothing a browser posts reaches it unchecked.
+
+The Statamic skills ship with [`danielgnh/footprint-statamic`](#statamic): `footprint-statamic-interactions` for setting up and adapting the Interactions tab, and `footprint-statamic-mcp` for giving the data to agents through the site's [Statamic MCP](https://github.com/danielgnh/statamic-mcp) server, as aggregates of names the live page contains.
+
+Boost writes Claude Code's guidelines to `AGENTS.md` (config `boost.agents.claude_code.guidelines_path`). Claude Code only reads them when `CLAUDE.md` contains the line `@AGENTS.md`.
+
+A non-interactive `php artisan boost:install` takes its choices from `boost.json`:
+
+```json
+{
+    "agents": ["claude_code"],
+    "guidelines": true,
+    "packages": ["danielgnh/footprint", "danielgnh/footprint-statamic"],
+    "skills": ["footprint-statamic-interactions", "footprint-statamic-mcp"],
+    "cloud": false
+}
+```
+
+Skills are installed only when `skills` lists them (or with `--skills`). Without `"cloud": false`, Cloud defaults on and Boost adds a Laravel Cloud skill whenever it installs skills.
 
 ## Development
 
