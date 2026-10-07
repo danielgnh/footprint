@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SPA</title>
+    <style>
+        body { margin: 0; }
+        [data-footprint-section] { height: 400px; }
+    </style>
+    {{tracker}}
+</head>
+<body>
+    <header id="top">
+        <button id="to-b">To B</button>
+        <button id="back">Back</button>
+        <button id="query">Change the query</button>
+    </header>
+    <main id="app"></main>
+    <script>
+        const pages = {
+            '/spa': '<div data-footprint-section="page-a">Page A</div>',
+            '/spa/b': '<div data-footprint-section="page-b">Page B</div><div data-footprint-section="page-b-more">More</div>',
+        };
+
+        // Renders after the history change, the way Inertia and other routers do.
+        const render = () => requestAnimationFrame(() => {
+            document.getElementById('app').innerHTML = pages[location.pathname] ?? '<p>Unknown</p>';
+        });
+
+        document.getElementById('to-b').addEventListener('click', () => {
+            history.pushState({}, '', '/spa/b' + location.search);
+            render();
+        });
+        document.getElementById('back').addEventListener('click', () => history.back());
+        document.getElementById('query').addEventListener('click', () => {
+            history.replaceState({}, '', location.pathname + location.search + '&size=M');
+        });
+        window.addEventListener('popstate', render);
+        render();
+    </script>
+</body>
+</html>

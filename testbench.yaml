@@ -1,0 +1,22 @@
+laravel: '@testbench'
+
+providers:
+  - Danielgnh\Footprint\ServiceProvider
+
+env:
+  - APP_ENV=local
+  - APP_DEBUG=true
+  - APP_URL=http://localhost:4318
+  - DB_CONNECTION=sqlite
+  - SESSION_DRIVER=array
+  - CACHE_STORE=array
+
+workbench:
+  start: /smoke
+  discovers:
+    web: true
+    views: true
+  build:
+    - create-sqlite-db
+    - migrate:fresh
+    - view:clear

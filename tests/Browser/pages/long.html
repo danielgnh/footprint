@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Long page</title>
+    <style>
+        body { margin: 0; font: 16px/1.4 system-ui, sans-serif; }
+        header { height: 80px; background: #eee; }
+        [data-footprint-section] { height: 900px; border-bottom: 1px solid #ccc; }
+        footer { height: 120px; background: #eee; }
+    </style>
+    {{tracker}}
+</head>
+<body>
+    <header><a href="/spa?run={{run}}">To the SPA</a></header>
+    <main>
+        <div data-footprint-section="s1"><button id="cta">Build yours</button></div>
+        <div data-footprint-section="s2"><p>Two</p></div>
+        <div data-footprint-section="s3"><p>Three</p></div>
+        <div data-footprint-section="s4"><p>Four</p></div>
+        <div data-footprint-section="s5"><p>Five</p></div>
+        <div data-footprint-section="s6"><p>Six</p></div>
+    </main>
+    <footer>Footer</footer>
+</body>
+</html>

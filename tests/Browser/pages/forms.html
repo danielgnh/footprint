@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forms</title>
+    {{tracker}}
+</head>
+<body>
+    <form name="quote" id="quote">
+        <label>Email <input name="email" type="email"></label>
+        <label>Your name <input name="name"></label>
+        <label>Notes <textarea name="notes"></textarea></label>
+        <label>Password <input name="password" type="password"></label>
+        <button type="submit">Send</button>
+    </form>
+    <form data-footprint="Newsletter" id="newsletter">
+        <input aria-label="Newsletter email" type="email">
+        <button>Subscribe</button>
+    </form>
+    <a id="away" href="/long?run={{run}}">Somewhere else</a>
+    <script>
+        document.getElementById('quote').addEventListener('submit', (event) => event.preventDefault());
+        document.getElementById('newsletter').addEventListener('submit', (event) => event.preventDefault());
+    </script>
+</body>
+</html>

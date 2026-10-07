@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Robustness</title>
+    {{tracker}}
+</head>
+<body>
+    <section id="main">
+        <button id="count">Count</button>
+        <output id="clicks">0</output>
+        <p id="words">Words</p>
+        <form name="f"><input name="q"></form>
+    </section>
+    <script>
+        let clicks = 0;
+        document.getElementById('count').addEventListener('click', () => {
+            document.getElementById('clicks').textContent = String(++clicks);
+        });
+    </script>
+</body>
+</html>

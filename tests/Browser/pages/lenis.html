@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lenis</title>
+    <style>
+        body { margin: 0; }
+        html.lenis, html.lenis body { height: auto; }
+        header { height: 80px; }
+        [data-footprint-section] { height: 900px; border-bottom: 1px solid #ccc; }
+    </style>
+    <script src="/lenis.js"></script>
+    {{tracker}}
+</head>
+<body>
+    <header>Header</header>
+    <div data-footprint-section="s1">One</div>
+    <div data-footprint-section="s2">Two</div>
+    <div data-footprint-section="s3">Three</div>
+    <div data-footprint-section="s4">Four</div>
+    <script>
+        window.lenis = new Lenis({ autoRaf: true });
+    </script>
+</body>
+</html>

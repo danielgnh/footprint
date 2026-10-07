@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clicks</title>
+    <style>
+        body { margin: 0; font: 16px/1.4 system-ui, sans-serif; }
+        #hero { position: relative; width: 360px; height: 400px; margin: 40px 0 0 20px; background: #f4f4f4; }
+        #hero > * { position: absolute; }
+        #text { left: 10px; top: 10px; }
+        #icon { left: 10px; top: 60px; width: 40px; height: 40px; }
+        #nested { left: 10px; top: 110px; }
+        #named { left: 200px; top: 10px; width: 120px; height: 40px; background: #ddd; }
+        #internal { left: 10px; top: 160px; }
+        #external { left: 10px; top: 200px; }
+        #mail { left: 10px; top: 240px; }
+        #size { left: 200px; top: 160px; }
+        #pay { left: 200px; top: 240px; width: 120px; height: 40px; }
+        #image { left: 200px; top: 300px; width: 120px; height: 80px; background: #bbb; }
+        #reacts { left: 10px; top: 300px; width: 120px; height: 40px; background: #cde; }
+        #plain { left: 10px; top: 350px; margin: 0; }
+        #private { margin: 20px; }
+        #scrubbed { margin: 20px; }
+    </style>
+    {{tracker}}
+</head>
+<body>
+    <div id="hero" data-footprint-section="hero">
+        <button id="text">Build yours</button>
+        <button id="icon" aria-label="Open geometry"><svg width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20"></rect></svg></button>
+        <button id="nested"><span><b>Compare</b> sizes</span></button>
+        <div id="named" data-footprint="Spec sheet toggle">Specs</div>
+        <a id="internal" href="/bikes/gravel?size=M#top">The bike</a>
+        <a id="external" href="https://www.instagram.com/irondeer?igsh=xyz">Instagram</a>
+        <a id="mail" href="mailto:hello@irondeer.pt">hello@irondeer.pt</a>
+        <label id="size"><input type="radio" name="size" value="M"> M (170–180 cm)</label>
+        <button id="pay" aria-disabled="true">Pay</button>
+        <img id="image" alt="Black Mamba side view" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=">
+        <div id="reacts">Open</div>
+        <p id="plain">Plain words</p>
+    </div>
+    <div id="private" data-footprint-ignore>
+        <button id="account">Account of Jane Doe</button>
+    </div>
+    <section id="scrubbed">
+        <button id="contact">Write jane@example.com or call 912345678</button>
+    </section>
+    <output id="opened"></output>
+    <script>
+        document.addEventListener('click', (event) => {
+            if (event.target.closest('a')) {
+                event.preventDefault();
+            }
+        });
+        document.getElementById('reacts').addEventListener('click', () => {
+            document.getElementById('opened').textContent = 'opened';
+        });
+    </script>
+</body>
+</html>
