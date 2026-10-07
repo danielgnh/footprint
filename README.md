@@ -80,7 +80,7 @@ Mention the collection in your privacy policy. Whether it needs consent where yo
 | Column | Meaning |
 |---|---|
 | `id` | Random UUID from the browser's memory. |
-| `host` | The site's host. |
+| `host` | Host of the page, from the batch's `Origin` or `Referer`. A site posting through `allowed_hosts` keeps its own host. |
 | `entry_path` | Normalised path of the first view. |
 | `referrer_host` | Host of an external referrer, or null. |
 | `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` | Campaign tags from the landing URL, scrubbed. |
