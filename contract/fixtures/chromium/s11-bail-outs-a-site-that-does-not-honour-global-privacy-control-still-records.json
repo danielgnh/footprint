@@ -1,0 +1,133 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "c92c48cc-ff74-4909-8592-bb4f1dfb6bb1",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 1,
+        "view": 1,
+        "path": "/long",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 8,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s1",
+        "i": 1
+      },
+      {
+        "t": 8,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "header",
+        "i": 0
+      },
+      {
+        "t": 45,
+        "view": 1,
+        "path": "/long",
+        "type": "click",
+        "target": "Build yours",
+        "href": null,
+        "section": "s1",
+        "x": 0.0313,
+        "y": 0.0133
+      },
+      {
+        "t": 86,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 40
+      },
+      {
+        "t": 86,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s3",
+        "i": 3
+      },
+      {
+        "t": 592,
+        "view": 1,
+        "path": "/long",
+        "type": "custom",
+        "name": "tried",
+        "props": {}
+      },
+      {
+        "t": 592,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": null,
+        "value": 591
+      },
+      {
+        "t": 592,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s1",
+        "value": 78
+      },
+      {
+        "t": 592,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s3",
+        "value": 506
+      },
+      {
+        "t": 592,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "header",
+        "value": 78
+      }
+    ]
+  },
+  {
+    "v": 1,
+    "visit": {
+      "id": "c92c48cc-ff74-4909-8592-bb4f1dfb6bb1",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 595,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": null,
+        "value": 3
+      },
+      {
+        "t": 595,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s3",
+        "value": 3
+      }
+    ]
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "31eb1b15-625c-4c34-8b6c-89b0b9140063",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 1,
+        "view": 1,
+        "path": "/long",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 6,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s3",
+        "i": 3
+      },
+      {
+        "t": 19,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 40
+      },
+      {
+        "t": 15000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": null,
+        "value": 14999
+      },
+      {
+        "t": 15000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s3",
+        "value": 14994
+      }
+    ]
+  },
+  {
+    "v": 1,
+    "visit": {
+      "id": "31eb1b15-625c-4c34-8b6c-89b0b9140063",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 30000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": null,
+        "value": 15000
+      },
+      {
+        "t": 30000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s3",
+        "value": 15000
+      }
+    ]
+  }
+]

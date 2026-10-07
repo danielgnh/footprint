@@ -1,0 +1,207 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "e6698706-2591-48d0-8157-60c45d6bd0dd",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 1,
+        "view": 1,
+        "path": "/long",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 9,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s1",
+        "i": 1
+      },
+      {
+        "t": 9,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "header",
+        "i": 0
+      },
+      {
+        "t": 253,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 10
+      },
+      {
+        "t": 728,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 30
+      },
+      {
+        "t": 728,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s2",
+        "i": 2
+      },
+      {
+        "t": 1052,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 40
+      },
+      {
+        "t": 1052,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s3",
+        "i": 3
+      },
+      {
+        "t": 3062,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 60
+      },
+      {
+        "t": 3062,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s4",
+        "i": 4
+      },
+      {
+        "t": 3373,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 70
+      },
+      {
+        "t": 3373,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s5",
+        "i": 5
+      },
+      {
+        "t": 3687,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 90
+      },
+      {
+        "t": 3687,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s6",
+        "i": 6
+      },
+      {
+        "t": 4003,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 100
+      },
+      {
+        "t": 4003,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "footer",
+        "i": 7
+      },
+      {
+        "t": 4512,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": null,
+        "value": 4511
+      },
+      {
+        "t": 4512,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s1",
+        "value": 719
+      },
+      {
+        "t": 4512,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s2",
+        "value": 324
+      },
+      {
+        "t": 4512,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s3",
+        "value": 2010
+      },
+      {
+        "t": 4512,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s4",
+        "value": 311
+      },
+      {
+        "t": 4512,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s5",
+        "value": 314
+      },
+      {
+        "t": 4512,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s6",
+        "value": 825
+      },
+      {
+        "t": 4512,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "header",
+        "value": 366
+      },
+      {
+        "t": 4512,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "footer",
+        "value": 509
+      }
+    ]
+  }
+]

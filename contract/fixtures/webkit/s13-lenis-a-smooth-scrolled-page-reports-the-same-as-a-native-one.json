@@ -1,0 +1,180 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "070512f6-af0f-41e9-8666-3b99c8f550b6",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 2,
+        "view": 1,
+        "path": "/lenis",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 3,
+        "view": 1,
+        "path": "/lenis",
+        "type": "section",
+        "section": "s1",
+        "i": 1
+      },
+      {
+        "t": 3,
+        "view": 1,
+        "path": "/lenis",
+        "type": "section",
+        "section": "header",
+        "i": 0
+      },
+      {
+        "t": 253,
+        "view": 1,
+        "path": "/lenis",
+        "type": "scroll",
+        "value": 10
+      },
+      {
+        "t": 425,
+        "view": 1,
+        "path": "/lenis",
+        "type": "scroll",
+        "value": 20
+      },
+      {
+        "t": 453,
+        "view": 1,
+        "path": "/lenis",
+        "type": "scroll",
+        "value": 30
+      },
+      {
+        "t": 491,
+        "view": 1,
+        "path": "/lenis",
+        "type": "section",
+        "section": "s2",
+        "i": 2
+      },
+      {
+        "t": 529,
+        "view": 1,
+        "path": "/lenis",
+        "type": "scroll",
+        "value": 40
+      },
+      {
+        "t": 2556,
+        "view": 1,
+        "path": "/lenis",
+        "type": "scroll",
+        "value": 50
+      },
+      {
+        "t": 2600,
+        "view": 1,
+        "path": "/lenis",
+        "type": "scroll",
+        "value": 60
+      },
+      {
+        "t": 2609,
+        "view": 1,
+        "path": "/lenis",
+        "type": "section",
+        "section": "s3",
+        "i": 3
+      },
+      {
+        "t": 2836,
+        "view": 1,
+        "path": "/lenis",
+        "type": "scroll",
+        "value": 70
+      },
+      {
+        "t": 3319,
+        "view": 1,
+        "path": "/lenis",
+        "type": "scroll",
+        "value": 80
+      },
+      {
+        "t": 3371,
+        "view": 1,
+        "path": "/lenis",
+        "type": "section",
+        "section": "s4",
+        "i": 4
+      },
+      {
+        "t": 3436,
+        "view": 1,
+        "path": "/lenis",
+        "type": "scroll",
+        "value": 90
+      },
+      {
+        "t": 4325,
+        "view": 1,
+        "path": "/lenis",
+        "type": "scroll",
+        "value": 100
+      },
+      {
+        "t": 5709,
+        "view": 1,
+        "path": "/lenis",
+        "type": "dwell",
+        "section": null,
+        "value": 5707
+      },
+      {
+        "t": 5709,
+        "view": 1,
+        "path": "/lenis",
+        "type": "dwell",
+        "section": "s1",
+        "value": 488
+      },
+      {
+        "t": 5709,
+        "view": 1,
+        "path": "/lenis",
+        "type": "dwell",
+        "section": "s2",
+        "value": 2118
+      },
+      {
+        "t": 5709,
+        "view": 1,
+        "path": "/lenis",
+        "type": "dwell",
+        "section": "s3",
+        "value": 762
+      },
+      {
+        "t": 5709,
+        "view": 1,
+        "path": "/lenis",
+        "type": "dwell",
+        "section": "s4",
+        "value": 2338
+      },
+      {
+        "t": 5709,
+        "view": 1,
+        "path": "/lenis",
+        "type": "dwell",
+        "section": "header",
+        "value": 409
+      }
+    ]
+  }
+]

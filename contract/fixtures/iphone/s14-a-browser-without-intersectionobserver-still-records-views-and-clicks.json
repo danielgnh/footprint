@@ -1,0 +1,62 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "f94ddda3-d489-4807-8434-7eaef6290d83",
+      "ref": null,
+      "utm": {},
+      "device": "mobile",
+      "vw": 350,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 1,
+        "view": 1,
+        "path": "/robust",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 60,
+        "view": 1,
+        "path": "/robust",
+        "type": "click",
+        "target": "Count",
+        "href": null,
+        "section": "main",
+        "x": 0.061,
+        "y": 0.1107
+      },
+      {
+        "t": 67,
+        "view": 1,
+        "path": "/robust",
+        "type": "dwell",
+        "section": null,
+        "value": 66
+      }
+    ]
+  },
+  {
+    "v": 1,
+    "visit": {
+      "id": "f94ddda3-d489-4807-8434-7eaef6290d83",
+      "ref": null,
+      "utm": {},
+      "device": "mobile",
+      "vw": 350,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 93,
+        "view": 1,
+        "path": "/robust",
+        "type": "dwell",
+        "section": null,
+        "value": 26
+      }
+    ]
+  }
+]

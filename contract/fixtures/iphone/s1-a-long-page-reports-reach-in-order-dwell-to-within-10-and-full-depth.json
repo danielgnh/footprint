@@ -1,0 +1,244 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "e6698706-2591-48d0-8157-60c45d6bd0dd",
+      "ref": null,
+      "utm": {},
+      "device": "mobile",
+      "vw": 350,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 1,
+        "view": 1,
+        "path": "/long",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 10,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s1",
+        "i": 1
+      },
+      {
+        "t": 10,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "header",
+        "i": 0
+      },
+      {
+        "t": 253,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 10
+      },
+      {
+        "t": 647,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 20
+      },
+      {
+        "t": 647,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s2",
+        "i": 2
+      },
+      {
+        "t": 975,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 40
+      },
+      {
+        "t": 975,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s3",
+        "i": 3
+      },
+      {
+        "t": 3006,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 60
+      },
+      {
+        "t": 3006,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s4",
+        "i": 4
+      },
+      {
+        "t": 3337,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 70
+      },
+      {
+        "t": 3337,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s5",
+        "i": 5
+      },
+      {
+        "t": 3649,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 90
+      },
+      {
+        "t": 3649,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s6",
+        "i": 6
+      },
+      {
+        "t": 3963,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 100
+      },
+      {
+        "t": 3963,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "footer",
+        "i": 7
+      },
+      {
+        "t": 4477,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": null,
+        "value": 4476
+      },
+      {
+        "t": 4477,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s1",
+        "value": 637
+      },
+      {
+        "t": 4477,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s2",
+        "value": 328
+      },
+      {
+        "t": 4477,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s3",
+        "value": 2031
+      },
+      {
+        "t": 4477,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s4",
+        "value": 331
+      },
+      {
+        "t": 4477,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s5",
+        "value": 312
+      },
+      {
+        "t": 4477,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s6",
+        "value": 828
+      },
+      {
+        "t": 4477,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "header",
+        "value": 320
+      },
+      {
+        "t": 4477,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "footer",
+        "value": 514
+      }
+    ]
+  },
+  {
+    "v": 1,
+    "visit": {
+      "id": "e6698706-2591-48d0-8157-60c45d6bd0dd",
+      "ref": null,
+      "utm": {},
+      "device": "mobile",
+      "vw": 350,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 4493,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": null,
+        "value": 16
+      },
+      {
+        "t": 4493,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s6",
+        "value": 16
+      },
+      {
+        "t": 4493,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "footer",
+        "value": 16
+      }
+    ]
+  }
+]

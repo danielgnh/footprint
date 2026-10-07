@@ -1,0 +1,160 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "10658017-013a-4688-8ea5-1c72d39cbaaa",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 6,
+        "view": 1,
+        "path": "/clicks",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 22,
+        "view": 1,
+        "path": "/clicks",
+        "type": "section",
+        "section": "hero",
+        "i": 0
+      },
+      {
+        "t": 22,
+        "view": 1,
+        "path": "/clicks",
+        "type": "section",
+        "section": "scrubbed",
+        "i": 1
+      },
+      {
+        "t": 133,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "Pay",
+        "href": null,
+        "section": "hero",
+        "x": 0.7222,
+        "y": 0.65
+      },
+      {
+        "t": 138,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "Pay",
+        "href": null,
+        "section": "hero",
+        "x": 0.7222,
+        "y": 0.65
+      },
+      {
+        "t": 142,
+        "view": 1,
+        "path": "/clicks",
+        "type": "rage",
+        "target": "Pay",
+        "section": "hero",
+        "x": 0.7222,
+        "y": 0.65
+      },
+      {
+        "t": 142,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "Pay",
+        "href": null,
+        "section": "hero",
+        "x": 0.7222,
+        "y": 0.65
+      },
+      {
+        "t": 146,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "Pay",
+        "href": null,
+        "section": "hero",
+        "x": 0.7222,
+        "y": 0.65
+      },
+      {
+        "t": 292,
+        "view": 1,
+        "path": "/clicks",
+        "type": "scroll",
+        "value": 100
+      },
+      {
+        "t": 364,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": null,
+        "value": 357
+      },
+      {
+        "t": 364,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "hero",
+        "value": 342
+      },
+      {
+        "t": 364,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "scrubbed",
+        "value": 342
+      }
+    ]
+  },
+  {
+    "v": 1,
+    "visit": {
+      "id": "10658017-013a-4688-8ea5-1c72d39cbaaa",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 398,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": null,
+        "value": 34
+      },
+      {
+        "t": 398,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "hero",
+        "value": 34
+      },
+      {
+        "t": 399,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "scrubbed",
+        "value": 35
+      }
+    ]
+  }
+]

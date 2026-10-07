@@ -1,0 +1,46 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "04c2ca1c-bc82-49d7-8579-e19e484f658b",
+      "ref": null,
+      "utm": {},
+      "device": "mobile",
+      "vw": 350,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 0,
+        "view": 1,
+        "path": "/robust",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 2,
+        "view": 1,
+        "path": "/robust",
+        "type": "section",
+        "section": "main",
+        "i": 0
+      },
+      {
+        "t": 174,
+        "view": 1,
+        "path": "/robust",
+        "type": "dwell",
+        "section": null,
+        "value": 174
+      },
+      {
+        "t": 174,
+        "view": 1,
+        "path": "/robust",
+        "type": "dwell",
+        "section": "main",
+        "value": 172
+      }
+    ]
+  }
+]

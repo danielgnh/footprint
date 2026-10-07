@@ -1,0 +1,180 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "15f81687-acd9-4ea5-8e4f-be9a604df4bf",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 2,
+        "view": 1,
+        "path": "/long",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 3,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "s1",
+        "i": 1
+      },
+      {
+        "t": 3,
+        "view": 1,
+        "path": "/long",
+        "type": "section",
+        "section": "header",
+        "i": 0
+      },
+      {
+        "t": 252,
+        "view": 1,
+        "path": "/long",
+        "type": "scroll",
+        "value": 10
+      },
+      {
+        "t": 15000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": null,
+        "value": 14998
+      },
+      {
+        "t": 15000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s1",
+        "value": 14997
+      },
+      {
+        "t": 15000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "header",
+        "value": 14997
+      }
+    ]
+  },
+  {
+    "v": 1,
+    "visit": {
+      "id": "15f81687-acd9-4ea5-8e4f-be9a604df4bf",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 30000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": null,
+        "value": 15000
+      },
+      {
+        "t": 30000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s1",
+        "value": 15000
+      },
+      {
+        "t": 30000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "header",
+        "value": 15000
+      }
+    ]
+  },
+  {
+    "v": 1,
+    "visit": {
+      "id": "15f81687-acd9-4ea5-8e4f-be9a604df4bf",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 45000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": null,
+        "value": 15000
+      },
+      {
+        "t": 45000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s1",
+        "value": 15000
+      },
+      {
+        "t": 45000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "header",
+        "value": 15000
+      }
+    ]
+  },
+  {
+    "v": 1,
+    "visit": {
+      "id": "15f81687-acd9-4ea5-8e4f-be9a604df4bf",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 60000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": null,
+        "value": 15000
+      },
+      {
+        "t": 60000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "s1",
+        "value": 15000
+      },
+      {
+        "t": 60000,
+        "view": 1,
+        "path": "/long",
+        "type": "dwell",
+        "section": "header",
+        "value": 15000
+      }
+    ]
+  }
+]

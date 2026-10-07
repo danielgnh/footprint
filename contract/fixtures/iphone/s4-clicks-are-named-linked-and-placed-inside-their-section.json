@@ -1,0 +1,194 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "aba59efd-085b-4e43-875b-f4b4e56eefde",
+      "ref": null,
+      "utm": {},
+      "device": "mobile",
+      "vw": 350,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 1,
+        "view": 1,
+        "path": "/clicks",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 6,
+        "view": 1,
+        "path": "/clicks",
+        "type": "section",
+        "section": "hero",
+        "i": 0
+      },
+      {
+        "t": 6,
+        "view": 1,
+        "path": "/clicks",
+        "type": "section",
+        "section": "scrubbed",
+        "i": 1
+      },
+      {
+        "t": 107,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "Build yours",
+        "href": null,
+        "section": "hero",
+        "x": 0.1306,
+        "y": 0.0475
+      },
+      {
+        "t": 265,
+        "view": 1,
+        "path": "/clicks",
+        "type": "scroll",
+        "value": 100
+      },
+      {
+        "t": 329,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "Open geometry",
+        "href": null,
+        "section": "hero",
+        "x": 0.0833,
+        "y": 0.2
+      },
+      {
+        "t": 496,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "Compare sizes",
+        "href": null,
+        "section": "hero",
+        "x": 0.1194,
+        "y": 0.295
+      },
+      {
+        "t": 756,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "Spec sheet toggle",
+        "href": null,
+        "section": "hero",
+        "x": 0.7222,
+        "y": 0.075
+      },
+      {
+        "t": 936,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "The bike",
+        "href": "/bikes/gravel",
+        "section": "hero",
+        "x": 0.1111,
+        "y": 0.4275
+      },
+      {
+        "t": 1117,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "Instagram",
+        "href": "www.instagram.com",
+        "section": "hero",
+        "x": 0.1278,
+        "y": 0.5275
+      },
+      {
+        "t": 1292,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "{email}",
+        "href": "mailto:",
+        "section": "hero",
+        "x": 0.2028,
+        "y": 0.6275
+      },
+      {
+        "t": 1474,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "M (170–180 cm)",
+        "href": null,
+        "section": "hero",
+        "x": 0.7444,
+        "y": 0.4275
+      },
+      {
+        "t": 1647,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": null,
+        "value": 1646
+      },
+      {
+        "t": 1647,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "hero",
+        "value": 1641
+      },
+      {
+        "t": 1647,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "scrubbed",
+        "value": 1641
+      }
+    ]
+  },
+  {
+    "v": 1,
+    "visit": {
+      "id": "aba59efd-085b-4e43-875b-f4b4e56eefde",
+      "ref": null,
+      "utm": {},
+      "device": "mobile",
+      "vw": 350,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 1715,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": null,
+        "value": 68
+      },
+      {
+        "t": 1715,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "hero",
+        "value": 68
+      },
+      {
+        "t": 1715,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "scrubbed",
+        "value": 68
+      }
+    ]
+  }
+]

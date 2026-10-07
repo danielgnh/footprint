@@ -1,0 +1,76 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "13e38410-03e6-41c8-847a-7b32e14c03c0",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 1,
+        "view": 1,
+        "path": "/tall",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 2,
+        "view": 1,
+        "path": "/tall",
+        "type": "section",
+        "section": "intro",
+        "i": 0
+      },
+      {
+        "t": 2,
+        "view": 1,
+        "path": "/tall",
+        "type": "section",
+        "section": "story",
+        "i": 1
+      },
+      {
+        "t": 253,
+        "view": 1,
+        "path": "/tall",
+        "type": "scroll",
+        "value": 10
+      },
+      {
+        "t": 318,
+        "view": 1,
+        "path": "/tall",
+        "type": "scroll",
+        "value": 30
+      },
+      {
+        "t": 1324,
+        "view": 1,
+        "path": "/tall",
+        "type": "dwell",
+        "section": null,
+        "value": 1323
+      },
+      {
+        "t": 1324,
+        "view": 1,
+        "path": "/tall",
+        "type": "dwell",
+        "section": "intro",
+        "value": 316
+      },
+      {
+        "t": 1324,
+        "view": 1,
+        "path": "/tall",
+        "type": "dwell",
+        "section": "story",
+        "value": 1322
+      }
+    ]
+  }
+]

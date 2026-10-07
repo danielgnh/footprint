@@ -1,0 +1,226 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "f9558dc9-2124-4dbd-8a0e-ee2ba78aaf40",
+      "ref": null,
+      "utm": {},
+      "device": "desktop",
+      "vw": 1250,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 1,
+        "view": 1,
+        "path": "/spa",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 5,
+        "view": 1,
+        "path": "/spa",
+        "type": "section",
+        "section": "page-a",
+        "i": 1
+      },
+      {
+        "t": 5,
+        "view": 1,
+        "path": "/spa",
+        "type": "section",
+        "section": "top",
+        "i": 0
+      },
+      {
+        "t": 253,
+        "view": 1,
+        "path": "/spa",
+        "type": "scroll",
+        "value": 100
+      },
+      {
+        "t": 411,
+        "view": 1,
+        "path": "/spa",
+        "type": "click",
+        "target": "To B",
+        "href": null,
+        "section": "top",
+        "x": 0.0148,
+        "y": 0.517
+      },
+      {
+        "t": 413,
+        "view": 1,
+        "path": "/spa",
+        "type": "dwell",
+        "section": null,
+        "value": 412
+      },
+      {
+        "t": 413,
+        "view": 1,
+        "path": "/spa",
+        "type": "dwell",
+        "section": "page-a",
+        "value": 408
+      },
+      {
+        "t": 413,
+        "view": 1,
+        "path": "/spa",
+        "type": "dwell",
+        "section": "top",
+        "value": 408
+      },
+      {
+        "t": 413,
+        "view": 2,
+        "path": "/spa/b",
+        "type": "view",
+        "from": "/spa"
+      },
+      {
+        "t": 514,
+        "view": 2,
+        "path": "/spa/b",
+        "type": "section",
+        "section": "page-b",
+        "i": 1
+      },
+      {
+        "t": 514,
+        "view": 2,
+        "path": "/spa/b",
+        "type": "section",
+        "section": "page-b-more",
+        "i": 2
+      },
+      {
+        "t": 514,
+        "view": 2,
+        "path": "/spa/b",
+        "type": "section",
+        "section": "top",
+        "i": 0
+      },
+      {
+        "t": 664,
+        "view": 2,
+        "path": "/spa/b",
+        "type": "scroll",
+        "value": 80
+      },
+      {
+        "t": 759,
+        "view": 2,
+        "path": "/spa/b",
+        "type": "click",
+        "target": "Back",
+        "href": null,
+        "section": "top",
+        "x": 0.0492,
+        "y": 0.517
+      },
+      {
+        "t": 827,
+        "view": 2,
+        "path": "/spa/b",
+        "type": "dwell",
+        "section": null,
+        "value": 414
+      },
+      {
+        "t": 827,
+        "view": 2,
+        "path": "/spa/b",
+        "type": "dwell",
+        "section": "page-b",
+        "value": 313
+      },
+      {
+        "t": 827,
+        "view": 2,
+        "path": "/spa/b",
+        "type": "dwell",
+        "section": "page-b-more",
+        "value": 313
+      },
+      {
+        "t": 827,
+        "view": 2,
+        "path": "/spa/b",
+        "type": "dwell",
+        "section": "top",
+        "value": 313
+      },
+      {
+        "t": 827,
+        "view": 3,
+        "path": "/spa",
+        "type": "view",
+        "from": "/spa/b"
+      },
+      {
+        "t": 928,
+        "view": 3,
+        "path": "/spa",
+        "type": "section",
+        "section": "page-a",
+        "i": 1
+      },
+      {
+        "t": 928,
+        "view": 3,
+        "path": "/spa",
+        "type": "section",
+        "section": "top",
+        "i": 0
+      },
+      {
+        "t": 1079,
+        "view": 3,
+        "path": "/spa",
+        "type": "scroll",
+        "value": 100
+      },
+      {
+        "t": 1179,
+        "view": 3,
+        "path": "/spa",
+        "type": "click",
+        "target": "Change the query",
+        "href": null,
+        "section": "top",
+        "x": 0.1117,
+        "y": 0.517
+      },
+      {
+        "t": 1487,
+        "view": 3,
+        "path": "/spa",
+        "type": "dwell",
+        "section": null,
+        "value": 660
+      },
+      {
+        "t": 1487,
+        "view": 3,
+        "path": "/spa",
+        "type": "dwell",
+        "section": "page-a",
+        "value": 559
+      },
+      {
+        "t": 1487,
+        "view": 3,
+        "path": "/spa",
+        "type": "dwell",
+        "section": "top",
+        "value": 559
+      }
+    ]
+  }
+]

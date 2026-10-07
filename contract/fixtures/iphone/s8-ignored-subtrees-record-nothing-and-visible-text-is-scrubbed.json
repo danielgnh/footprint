@@ -1,0 +1,80 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "d55739af-3088-4668-8b8f-288f5a620bf5",
+      "ref": null,
+      "utm": {},
+      "device": "mobile",
+      "vw": 350,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 1,
+        "view": 1,
+        "path": "/clicks",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 4,
+        "view": 1,
+        "path": "/clicks",
+        "type": "section",
+        "section": "hero",
+        "i": 0
+      },
+      {
+        "t": 4,
+        "view": 1,
+        "path": "/clicks",
+        "type": "section",
+        "section": "scrubbed",
+        "i": 1
+      },
+      {
+        "t": 148,
+        "view": 1,
+        "path": "/clicks",
+        "type": "click",
+        "target": "Write {email} or call {n}",
+        "href": null,
+        "section": "scrubbed",
+        "x": 0.3484,
+        "y": 0.5945
+      },
+      {
+        "t": 258,
+        "view": 1,
+        "path": "/clicks",
+        "type": "scroll",
+        "value": 100
+      },
+      {
+        "t": 361,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": null,
+        "value": 360
+      },
+      {
+        "t": 361,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "hero",
+        "value": 357
+      },
+      {
+        "t": 361,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "scrubbed",
+        "value": 357
+      }
+    ]
+  }
+]

@@ -1,0 +1,89 @@
+[
+  {
+    "v": 1,
+    "visit": {
+      "id": "42dc6ddc-9e69-46e4-8acd-68d02544314f",
+      "ref": null,
+      "utm": {},
+      "device": "mobile",
+      "vw": 400,
+      "lang": "en"
+    },
+    "events": [
+      {
+        "t": 1,
+        "view": 1,
+        "path": "/clicks",
+        "type": "view",
+        "from": null
+      },
+      {
+        "t": 4,
+        "view": 1,
+        "path": "/clicks",
+        "type": "section",
+        "section": "hero",
+        "i": 0
+      },
+      {
+        "t": 4,
+        "view": 1,
+        "path": "/clicks",
+        "type": "section",
+        "section": "scrubbed",
+        "i": 1
+      },
+      {
+        "t": 253,
+        "view": 1,
+        "path": "/clicks",
+        "type": "scroll",
+        "value": 100
+      },
+      {
+        "t": 1043,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dead",
+        "target": "Black Mamba side view",
+        "section": "hero",
+        "x": 0.7222,
+        "y": 0.85
+      },
+      {
+        "t": 2354,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dead",
+        "target": "p",
+        "section": "hero",
+        "x": 0.1417,
+        "y": 0.9025
+      },
+      {
+        "t": 4015,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": null,
+        "value": 4014
+      },
+      {
+        "t": 4015,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "hero",
+        "value": 4011
+      },
+      {
+        "t": 4015,
+        "view": 1,
+        "path": "/clicks",
+        "type": "dwell",
+        "section": "scrubbed",
+        "value": 4011
+      }
+    ]
+  }
+]
