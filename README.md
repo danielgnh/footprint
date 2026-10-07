@@ -130,6 +130,42 @@ Events wait in memory and go out as one `text/plain` JSON batch through `navigat
 
 The wire format is `contract/batch.schema.json`. The server rejects a malformed envelope with 422 and drops a single event it cannot read, so a newer tracker never loses the rest of its batch.
 
+## Querying
+
+Both models have query methods that read the data the way it was written, so the rest is plain Eloquent:
+
+```php
+use Danielgnh\Footprint\Models\Footprint;
+use Danielgnh\Footprint\Models\Visit;
+
+$page = Footprint::onPage('https://example.com/pricing')
+    ->between(now()->subDays(30), now())
+    ->onDevice('mobile');
+
+$views = $page->clone()->ofType('view')->count();
+$medianTime = $page->clone()->dwellPerView()->get()->whereNull('section')->median('ms');
+$readToTheEnd = $page->clone()->deepestScroll()->get()->where('depth', 100)->count() / max(1, $views);
+$deadClicks = $page->clone()->ofType('dead')->inSection('hero')->selectRaw('target, count(*) as clicks')->groupBy('target')->get();
+
+$gaveUp = Visit::whereHas('footprints', fn ($footprints) => $footprints->onPage('/quote')->ofType('abandon')->where('target', 'email'));
+$events = $visit->footprints()->timeline()->get();
+```
+
+| Method | On | What it does |
+|---|---|---|
+| `onPage($url)` | `Footprint` | Rows of a page. Takes a full URL or a path and normalises it the way ingest stored it; a URL with a host also matches the host. |
+| `landedOn($url)` | `Visit` | Visits that started on a page, matched the same way. |
+| `onHost($host)` | both | Rows of one host. |
+| `between($from, $to)` | both | Rows that arrived (`Footprint`) or visits that started (`Visit`) from `$from` up to, not including, `$to`. |
+| `onDevice($device)` | both | `mobile`, `tablet` or `desktop`. |
+| `ofType(...$types)`, `inSection($section)` | `Footprint` | Event types and the section they happened in. |
+| `dwellPerView()` | `Footprint` | One row per view and section with `ms`, the time it was on screen. A null section is time on the page. |
+| `deepestScroll()` | `Footprint` | One row per view with `depth`, the deepest scroll in percent. A view without a row never passed 10%. |
+| `reachedSections()` | `Footprint` | One row per view and section it reached, with `position` on the page. A section's reach is its row count divided by the page's views. |
+| `timeline()` | `Footprint` | Events in the order they happened, without `dwell`. |
+
+`dwell` and `scroll` rows are deltas and new maxima. Summing, averaging or counting them raw gives wrong numbers, so go through `dwellPerView()` and `deepestScroll()`.
+
 ## Development
 
 ```bash

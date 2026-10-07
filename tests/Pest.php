@@ -9,6 +9,8 @@ uses(TestCase::class)->in(__DIR__);
 
 const VISIT_ID = '6f1c2c3e-1b2a-4c3d-8e4f-5a6b7c8d9e0f';
 
+const OTHER_VISIT = '0b5e1c9a-7d2f-4e3b-9a8c-1f2e3d4c5b6a';
+
 const BROWSER = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15';
 
 const TOKEN = 'Xk9fQ2LmP0aZ7bR4tY1uW8eV3sD6gH5jN2kL9mQ0';

@@ -2,9 +2,11 @@
 
 namespace Danielgnh\Footprint\Models;
 
+use Danielgnh\Footprint\Builders\VisitBuilder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
 
 /**
@@ -49,6 +51,15 @@ class Visit extends Model
     public function footprints(): HasMany
     {
         return $this->hasMany(Footprint::class);
+    }
+
+    /**
+     * @param  Builder  $query
+     */
+    #[\Override]
+    public function newEloquentBuilder($query): VisitBuilder
+    {
+        return new VisitBuilder($query);
     }
 
     #[\Override]
