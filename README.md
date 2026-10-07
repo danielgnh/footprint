@@ -19,19 +19,25 @@ Put the tag in the `<head>` of your layout, before your own scripts:
 @footprint
 ```
 
-It renders a one-line stub, so `window.footprint.track()` works before the tracker has loaded, and the deferred tracker itself (about 5.7 kB gzipped).
+It renders a one-line stub, so `window.footprint.track()` works before the tracker has loaded, and the deferred tracker itself (about 5.9 kB gzipped).
 
 Templates that are not Blade print the same markup from PHP: `app(\Danielgnh\Footprint\Script::class)->tag()`. Statamic's Antlers, for example, can call it from a small tag or a view composer.
 
 ## Marking up a page
 
-The tracker works without any markup: it treats `header`, `footer`, `section[id]` and `dialog` as sections and names clicks from their accessible names. Three attributes make the data sharper:
+The tracker works without any markup: it treats the page's `header` and `footer`, `section[id]` and `dialog` as sections and names clicks from their accessible names. Three attributes make the data sharper:
 
 | Attribute | Effect |
 |---|---|
 | `data-footprint-section="hero"` | Marks a section and names it. Reach and dwell are counted per section; clicks are placed inside it. |
 | `data-footprint="Hero CTA"` | Names an element for clicks, fields or forms, ahead of anything it would read off the element. |
 | `data-footprint-ignore` | Nothing inside this element is recorded: no clicks, fields, sections or rage clicks. Put it on anything that can show personal data, such as an account menu. |
+
+How it reads the page:
+
+- A name is the text as written, with a space around every part not laid out inline (a block, flex or grid item, a `<br>`): a card stacking `01`, `Black Mamba` and `Gloss black` is `01 Black Mamba Gloss black`.
+- A `header` or `footer` inside `article`, `aside`, `main`, `nav` or `section` is not a section. Its clicks belong to the section around it, or to none.
+- A section that is `position: fixed` or `sticky` when the tracker finds it (a sticky header, a reveal footer, a fixed bar) records clicks and their position, but no `section` or `dwell` rows, so it never shows reach or time, unless it is a dialog: `dialog`, `[role="dialog"]`, `[role="alertdialog"]` or `[aria-modal="true"]`.
 
 Custom milestones go through `track`:
 
@@ -113,8 +119,8 @@ Mention the collection in your privacy policy. Whether it needs consent where yo
 | Type | Sent when | Columns used |
 |---|---|---|
 | `view` | A page loads, a path changes through `pushState`/`replaceState`/`popstate`, or a page returns from the back-forward cache. A query-only change is not a view. | `previous` |
-| `section` | A section is first seen in a view: half of it is visible, or it fills half the viewport. | `section`, `section_index` |
-| `dwell` | On every flush, the milliseconds a section was seen since the last one, while the tab was visible and the visitor active in the last 30 s. `section` null is time on the page. Sum them per view. | `section`, `value` |
+| `section` | A section is first seen in a view: half of it is visible, or it fills half the viewport. Never for a fixed or sticky section unless it is a dialog. | `section`, `section_index` |
+| `dwell` | On every flush, the milliseconds a section was seen since the last one, while the tab was visible and the visitor active in the last 30 s. `section` null is time on the page. None for a fixed or sticky section unless it is a dialog. Sum them per view. | `section`, `value` |
 | `scroll` | The deepest point reached passes another 10%. A page shorter than the viewport reports 100. | `value` |
 | `click` | An interactive element is clicked: a link, button, form control, label, summary, ARIA widget, `[tabindex="0"]`, `[onclick]` or `[data-footprint]`. A label's click on its own control is counted once. | `target`, `href`, `section`, `x`, `y` |
 | `rage` | A third press within 700 ms and 24 px of the first, disabled buttons included. Not when it selected text. | `target`, `section`, `x`, `y` |

@@ -56,6 +56,43 @@ describe('section reach', () => {
         expect([...IO.instances[0].targets].map((element) => element.id || element.tagName.toLowerCase())).toEqual(['header', 'faq']);
     });
 
+    it('neither reaches nor times a fixed or sticky section, which never leaves the viewport', () => {
+        html(`
+            <header id="top" style="position: fixed">Header</header>
+            <div data-footprint-section="hero">Hero</div>
+            <footer style="position: sticky; bottom: 0">Footer</footer>
+        `);
+        const run = boot();
+
+        IO.show($('[data-footprint-section="hero"]'), 1);
+
+        expect([...IO.instances[0].targets]).toEqual([$('[data-footprint-section="hero"]')]);
+        expect(run.of('section').map(({ section, i }) => [section, i])).toEqual([['hero', 0]]);
+    });
+
+    it('still reaches and times a fixed dialog, which is only on screen once it opens', () => {
+        html(`
+            <header style="position: fixed">Header</header>
+            <dialog open style="position: fixed">Geometry</dialog>
+            <div data-footprint-section="newsletter" role="dialog" style="position: fixed">Newsletter</div>
+            <div data-footprint-section="consent" role="alertdialog" style="position: fixed">Consent</div>
+            <div data-footprint-section="menu" aria-modal="true" style="position: fixed">Menu</div>
+        `);
+        const run = boot();
+
+        IO.show($('[data-footprint-section="newsletter"]'), 1);
+        vi.advanceTimersByTime(1000);
+
+        expect([...IO.instances[0].targets].map((element) => element.getAttribute('data-footprint-section') ?? element.tagName.toLowerCase())).toEqual([
+            'newsletter',
+            'consent',
+            'menu',
+            'dialog',
+        ]);
+        expect(run.of('section').map((event) => event.section)).toEqual(['newsletter']);
+        expect(dwell(run, 'newsletter')).toBe(1000);
+    });
+
     it('reaches sections again in a new view, after the new page has rendered', () => {
         html(PAGE);
         const run = boot();

@@ -11,6 +11,12 @@ interface Tracked {
     watch: Stopwatch;
 }
 
+const DIALOG = 'dialog, [role="dialog"], [role="alertdialog"], [aria-modal="true"]';
+
+function pinned(element: Element): boolean {
+    return !element.matches(DIALOG) && ['fixed', 'sticky'].includes(getComputedStyle(element).position);
+}
+
 export function sections(ctx: Context): void {
     if (typeof IntersectionObserver === 'undefined') {
         return;
@@ -101,7 +107,7 @@ export function sections(ctx: Context): void {
         }
 
         for (const element of current) {
-            if (!tracked.has(element)) {
+            if (!tracked.has(element) && !pinned(element)) {
                 tracked.set(element, { name: sectionName(element), seen: false, reached: false, watch: new Stopwatch() });
                 observer.observe(element);
             }
